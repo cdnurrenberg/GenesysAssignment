@@ -6,6 +6,7 @@ Please see JOURNAL.md, as I outline my progress, thought process, and other step
 ## Running this project
 
 `npm install` in `genesys-assignment`
+
 `npm start`
 
 
