@@ -11,9 +11,10 @@ export const StoryFeed = (props: any) => {
       .then((res: any) => setStories(res))
   }, [])
 
+  //  TODO: Suspense / loading 
   return (
-    <div >
-      { stories.map(story => <StoryComponent {...story }/>) }
+    <div className="story-feed">
+      { stories.slice(0, 1).map((story, i) => <StoryComponent key={i} {...story } rank={i}/>) }
     </div>
   );
 }
