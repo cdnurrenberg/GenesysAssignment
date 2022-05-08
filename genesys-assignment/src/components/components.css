@@ -1,0 +1,40 @@
+.story-card {
+    margin: 10px 10px 10px 10px;
+    padding: 10px;
+    border: 2px solid #33333333;
+    background-color:#ff660022;
+    border-radius: 12px;
+}
+
+.story-card:hover {
+    background-color:#ff660044;
+}
+
+.asset-title {
+    font-size: larger;
+    color: rgb(17, 17, 17);
+}
+
+a {
+    font-style: normal;
+    text-decoration-line: none;
+    color:inherit;
+}
+
+a:hover {
+    text-decoration-line: underline;
+    color: inherit;
+}
+
+.asset-detail {
+    color: grey;
+    font-size: smaller;
+}
+
+.asset-button {
+    margin: 4px
+}
+
+.align-right {
+    text-align: right;
+}
