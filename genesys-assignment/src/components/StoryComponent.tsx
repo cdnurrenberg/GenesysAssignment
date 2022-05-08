@@ -1,3 +1,4 @@
+import { isVisible } from '@testing-library/user-event/dist/utils';
 import React, { useState } from 'react';
 // import type { Story } from '../api/HackerNews';
 import {
@@ -14,6 +15,7 @@ export const StoryComponent = (props: any) => {
     // rank, descendants = comments, time, author
     const {
         title,
+        rank, 
         score,
         url,
         deleted,
@@ -22,41 +24,63 @@ export const StoryComponent = (props: any) => {
         time,
     } = props;
 
-    const [isHidden, setHidden] = useState(deleted ?? false);
-
+    const [isHidden, setHidden] = useState(false);
+    const [isUpvoted, setUpvoted] = useState(false);
+    const changeHiddenCallback = () => setHidden(isVisible => !isVisible);
+    const changeUpvoteCallback = () => setUpvoted(vote => !vote)
 
     /* TODO:
         buttons: upvote, hide, comments, user page?
         text display: Title, Domain, Submitted By,
         CSS
-        ability to un-hide posts
+        ability to un-hide posts, but not deleted posts
     
     */
-   return isHidden ? <></> : <Container className="story-card">
-       <Row>
+
+    if (deleted) {
+        // Don't display deleted posts at all.
+        return <></>;
+    }
+
+    const hiddenComponent = <Container className="story-card hidden">
+        <Row className="asset-detail">
+            This story has been hidden.
+            <Col xs="auto">
+                <Button className="asset-button" size="sm"  onClick={changeHiddenCallback}>Unhide?</Button>
+            </Col>
+        </Row>
+    </Container>;
+
+   return isHidden ? hiddenComponent : <Container className="story-card">
+    <Col xs>
+        {/* {rank} <br></br>{score + isUpvoted} */}
+    </Col>
+    <Col>
+        <Row>
             <Col xs={9} className="asset-title">
                 <a href={url}>
                 {title}
                 </a>
             </Col>
             <Col xs={3} className="asset-detail align-right">
-                {`(${url.match(domainRegex)[1]})`}
+                {url ? `(${url.match(domainRegex)[1]})` : ''}
             </Col>
-       </Row>
-       <Row>
+        </Row>
+        <Row>
             <Col className="asset-detail" sm={9}>
                 Submitted by {by} at {new Date(time).toString()}
             </Col>
             <Col className="asset-detail align-right">
                 
             </Col>
-       </Row>
-       <Row>
-           <Col>
-                <Button className="asset-button" size="sm">Upvote</Button>
-                <Button className="asset-button" size="sm" onClick={() => setHidden(!isHidden)}>Hide</Button>
+        </Row>
+        <Row>
+            <Col>
+                <Button className="asset-button" size="sm" onClick={changeUpvoteCallback}>Upvote</Button>
+                <Button className="asset-button" size="sm" onClick={changeHiddenCallback}>Hide</Button>
                 <Button className="asset-button" size="sm">Comment ({descendants} comments)</Button>
-           </Col>
-       </Row>
+            </Col>
+        </Row>
+        </Col>
    </Container>;
 }

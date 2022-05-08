@@ -1,3 +1,29 @@
+.story-feed {
+    height: 80vh;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    align-self: left;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track:hover {
+    box-shadow: inset 0 0 1px grey; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: gray; 
+  }
+
 .story-card {
     margin: 10px 10px 10px 10px;
     padding: 10px;
@@ -37,4 +63,31 @@ a:hover {
 
 .align-right {
     text-align: right;
+}
+
+.header {
+    height: 10vh;
+    display: flex;
+    margin: 10px 10px 10px 10px;
+    padding: 10px;
+    border: 2px solid #33333333;
+    background-color:#ff6600;
+    border-radius: 12px;
+    align-items: center;
+}
+
+.header .logo {
+    border: 1px solid white;
+    object-fit: fill;
+}
+
+.header a {
+    margin: 10px;
+}
+
+.header .title {
+    padding-left: 4px;
+    margin: auto auto auto 0;
+    font-size: 30px;
+    font-weight: bold;
 }

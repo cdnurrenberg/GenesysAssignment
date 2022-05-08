@@ -14,7 +14,7 @@ export const StoryFeed = (props: any) => {
   //  TODO: Suspense / loading 
   return (
     <div className="story-feed">
-      { stories.slice(0, 1).map((story, i) => <StoryComponent key={i} {...story } rank={i}/>) }
+      { stories.map((story, i) => <StoryComponent key={i} {...story } rank={i}/>) }
     </div>
   );
 }
