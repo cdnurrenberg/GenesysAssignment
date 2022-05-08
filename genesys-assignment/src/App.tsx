@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { StoryFeed } from './components/StoryFeed';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './components/components.css'
 
-function App() {
+const App = () => {
 
   return (
     <div className="App">
