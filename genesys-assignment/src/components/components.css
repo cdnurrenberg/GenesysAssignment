@@ -88,6 +88,17 @@ a:hover {
     align-items: center;
 }
 
+.footer {
+    height: 10vh;
+    padding: 10px;
+    align-items: center;
+    width:  100%;
+}
+
+.footer span {
+    display: inline-block;
+}
+
 .header .logo {
     border: 1px solid white;
 }
@@ -99,6 +110,10 @@ a:hover {
 }
 
 .header a {
+    margin: 10px;
+}
+
+.footer a {
     margin: 10px;
 }
 
