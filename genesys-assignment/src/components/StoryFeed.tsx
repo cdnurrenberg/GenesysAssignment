@@ -23,12 +23,16 @@ export const StoryFeed = (props: any) => {
   //  TODO: Suspense / loading 
   return (
     <Container className="story-feed">
-      { loading ? <> Loading </> : stories.map((story, i) => 
-        <StoryComponent
-          key={i}
-          rank={(STORIES_PER_PAGE * pageNumber + i + 1)}
-          {...story }
-        />) 
+      { loading ? <div className="loading">
+          <img src="https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="loading"/>
+        </div> : 
+        stories.map((story, i) => 
+          <StoryComponent
+            key={i}
+            rank={(STORIES_PER_PAGE * pageNumber + i + 1)}
+            {...story }
+          />
+        ) 
       }
       { loading ? <></> : <Row className="justify-content-center">
           <Button
