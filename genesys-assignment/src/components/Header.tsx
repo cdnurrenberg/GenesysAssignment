@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import logo from "../assets/logo.png";
 
-export const Header = (props: any) => {
+export const Header: React.FC = (props: any) => {
 
     return (
         <Container className="header">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-export const Footer = (props: any) => {
+export const Footer: React.FC = (props: any) => {
 
     return (
         <Container className="footer asset-detail">

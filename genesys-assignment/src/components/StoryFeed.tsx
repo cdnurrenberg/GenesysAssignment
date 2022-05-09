@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Button, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { getStoryRange } from '../api/HackerNews';
 import { StoryComponent } from './StoryComponent';
+import type { Story } from '../api/HackerNews';
+import { Button } from "./Button";
 
-const STORIES_PER_PAGE = 20;
+const STORIES_PER_PAGE: number = 20;
 
-export const StoryFeed = (props: any) => {
+export const StoryFeed: React.FC = () => {
 
-  const [stories, setStories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [pageNumber, setPageNumber] = useState<number>(0);
 
   useEffect(() => {
     setLoading(true);
@@ -26,7 +28,7 @@ export const StoryFeed = (props: any) => {
       { loading ? <div className="loading">
           <img src="https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="loading"/>
         </div> : 
-        stories.map((story, i) => 
+        stories.map((story: Story, i: number) => 
           <StoryComponent
             key={i}
             rank={(STORIES_PER_PAGE * pageNumber + i + 1)}
@@ -34,25 +36,21 @@ export const StoryFeed = (props: any) => {
           />
         ) 
       }
-      { loading ? <></> : <Row className="justify-content-center">
+      { loading ? <></> : <Row xs="auto" className="justify-content-center">
           <Button
-            className="asset-detail"
+            className="asset-detail asset-button"
             disabled={pageNumber === 0}
             size="sm"
-            variant="outline-warning"
+            text="Previous Page"
             onClick={() => setPageNumber(n => n - 1)}
-          >
-            Previous Page
-          </Button>
+          />
           <Button
-            className="asset-detail"
+            className="asset-detail asset-button"
             disabled={pageNumber === 19}
             size="sm"
-            variant="outline-warning"
+            text="Next Page"
             onClick={() => setPageNumber(n => n + 1)}
-          >
-            Next Page
-          </Button>
+          />
         </ Row >
       }
     </Container>

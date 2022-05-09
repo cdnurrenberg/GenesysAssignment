@@ -1,23 +1,25 @@
-import { isVisible } from '@testing-library/user-event/dist/utils';
 import React, { useState } from 'react';
-// import type { Story } from '../api/HackerNews';
+import type { Story } from '../api/HackerNews';
 import {
     Container,
     Row,
-    Col,
-    Button
-} from 'react-bootstrap'
+    Col
+} from 'react-bootstrap';
+import { Button } from "./Button";
 
 //TODO: move domain stripping util
 const domainRegex = /:\/\/(.[^/]+)/;
+const getDomain = (url: string | undefined) => `(${url?.match(domainRegex)?.[1]})` || '';
 
-export const StoryComponent = (props: any) => {
+type StoryProps = Story & { rank: number };
+
+export const StoryComponent = (props: StoryProps) => {
     // rank, descendants = comments, time, author
     const {
         title,
         rank, 
         score,
-        url,
+        url = '',
         deleted,
         by,
         descendants,
@@ -46,7 +48,12 @@ export const StoryComponent = (props: any) => {
         <Row className="asset-detail">
             <Col xs="auto">This story has been hidden.</Col>
             <Col>
-                <Button className="asset-button asset-detail" variant="outline-warning" size="sm"  onClick={changeHiddenCallback}>Unhide?</Button>
+                <Button
+                    className="asset-button asset-detail"
+                    size="sm"
+                    text="Unhide?"
+                    onClick={changeHiddenCallback}
+                />
             </Col>
         </Row>
     </Container>;
@@ -58,7 +65,7 @@ export const StoryComponent = (props: any) => {
                     {`No. ${rank}`}
                 </Row>
                 <Row className="asset-detail">
-                    {score + isUpvoted}
+                    {score + Number(isUpvoted)}
                     <br />
                     points
                 </Row>
@@ -71,7 +78,7 @@ export const StoryComponent = (props: any) => {
                         </a>
                     </Col>
                     <Col xs={3} className="asset-detail align-right">
-                        {url ? `(${url.match(domainRegex)[1]})` : ''}
+                        {getDomain(url)}
                     </Col>
                 </Row>
                 <Row>
@@ -84,9 +91,23 @@ export const StoryComponent = (props: any) => {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="asset-button asset-detail" variant="outline-warning" size="sm" onClick={changeUpvoteCallback}>Upvote</Button>
-                        <Button className="asset-button asset-detail" variant="outline-warning" size="sm" onClick={changeHiddenCallback}>Hide</Button>
-                        <Button className="asset-button asset-detail" variant="outline-warning" size="sm">Comment ({descendants} comments)</Button>
+                        <Button
+                            className="asset-button asset-detail"
+                            size="sm"
+                            text="Upvote"
+                            onClick={changeUpvoteCallback}
+                        />
+                        <Button
+                            className="asset-button asset-detail"
+                            size="sm" 
+                            text="Hide"
+                            onClick={changeHiddenCallback}
+                        />
+                        <Button
+                            className="asset-button asset-detail"
+                            size="sm"
+                            text={descendants !== undefined ? `Comment (${descendants} comments)` : 'Comment'}
+                        />
                     </Col>
                 </Row>
             </Col>
