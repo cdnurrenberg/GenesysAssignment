@@ -44,43 +44,52 @@ export const StoryComponent = (props: any) => {
 
     const hiddenComponent = <Container className="story-card hidden">
         <Row className="asset-detail">
-            This story has been hidden.
-            <Col xs="auto">
-                <Button className="asset-button" size="sm"  onClick={changeHiddenCallback}>Unhide?</Button>
+            <Col xs="auto">This story has been hidden.</Col>
+            <Col>
+                <Button className="asset-button asset-detail" variant="outline-warning" size="sm"  onClick={changeHiddenCallback}>Unhide?</Button>
             </Col>
         </Row>
     </Container>;
 
    return isHidden ? hiddenComponent : <Container className="story-card">
-    <Col xs>
-        {/* {rank} <br></br>{score + isUpvoted} */}
-    </Col>
-    <Col>
-        <Row>
-            <Col xs={9} className="asset-title">
-                <a href={url}>
-                {title}
-                </a>
+       <Row>
+            <Col xs={"auto"} className="score  align-center">
+                <Row>
+                    {`No. ${rank}`}
+                </Row>
+                <Row className="asset-detail">
+                    {score + isUpvoted}
+                    <br />
+                    points
+                </Row>
             </Col>
-            <Col xs={3} className="asset-detail align-right">
-                {url ? `(${url.match(domainRegex)[1]})` : ''}
-            </Col>
-        </Row>
-        <Row>
-            <Col className="asset-detail" sm={9}>
-                Submitted by {by} at {new Date(time).toString()}
-            </Col>
-            <Col className="asset-detail align-right">
-                
-            </Col>
-        </Row>
-        <Row>
             <Col>
-                <Button className="asset-button" size="sm" onClick={changeUpvoteCallback}>Upvote</Button>
-                <Button className="asset-button" size="sm" onClick={changeHiddenCallback}>Hide</Button>
-                <Button className="asset-button" size="sm">Comment ({descendants} comments)</Button>
+                <Row>
+                    <Col xs={9} className="asset-title">
+                        <a href={url}>
+                            {title}
+                        </a>
+                    </Col>
+                    <Col xs={3} className="asset-detail align-right">
+                        {url ? `(${url.match(domainRegex)[1]})` : ''}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="asset-detail" xs={9}>
+                        Submitted by {by} at {new Date(time).toString()}
+                    </Col>
+                    <Col className="asset-detail align-right">
+                            
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Button className="asset-button asset-detail" variant="outline-warning" size="sm" onClick={changeUpvoteCallback}>Upvote</Button>
+                        <Button className="asset-button asset-detail" variant="outline-warning" size="sm" onClick={changeHiddenCallback}>Hide</Button>
+                        <Button className="asset-button asset-detail" variant="outline-warning" size="sm">Comment ({descendants} comments)</Button>
+                    </Col>
+                </Row>
             </Col>
-        </Row>
-        </Col>
+       </Row>
    </Container>;
 }

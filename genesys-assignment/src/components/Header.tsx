@@ -6,7 +6,9 @@ export const Header = (props: any) => {
 
     return (
         <Container className="header">
-            <img className="logo" src={logo} alt="Hacker News"/> 
+            <div className="logo">
+                <img src={logo} alt="Hacker News"/> 
+            </div>
             <div className="title">Hacker News</div>
             <a href="">News</a>{' | '}
             <a href="">Past</a>{' | '}
