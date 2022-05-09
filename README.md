@@ -1,7 +1,7 @@
 # GenesysAssignment
 A short single-day application project for the Genesys interview Pipeline
 
-Please see JOURNAL.md, as I outline my progress, thought process, and other steps during the development of this project.
+Please see JOURNAL.md, as I outline my progress, thought process, and other steps during the development of this project. It's a bit informal, but I like having a close-to-stream-of-consciousness rambling during this so you get a better feel for who I am as a developer since this wasn't a live-coding interview.
 
 ## Running this project
 
