@@ -6,7 +6,7 @@ export const Footer = (props: any) => {
     return (
         <Container className="footer asset-detail">
             <Row xs={1}>
-                <Col className="justify-content-center">
+                <Col>
                     <span><a href="">Guidelines</a>{' | '}</span>
                     <span><a href="">FAQ</a>{' | '}</span>
                     <span><a href="">Lists</a>{' | '}</span>
